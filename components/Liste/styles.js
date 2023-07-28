@@ -8,7 +8,7 @@ const TodoList = styled.ul`
 
 //BiCheckbox
 const Checkbox = styled(BiCheckbox)`
-  font-size: 24px;
+  font-size: 28px;
   color: pink;
 `;
 

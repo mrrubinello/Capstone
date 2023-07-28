@@ -1,5 +1,5 @@
-import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
+import SubHeading from "../../components/SubHeading";
+import Heading from "../../components/Heading";
 
 export default function Home() {
   return (
