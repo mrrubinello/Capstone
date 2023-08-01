@@ -1,12 +1,18 @@
 import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
-import ToDoList from "../components/ToDoList";
+import Liste from "../components/Liste";
+import Link from "next/link";
+import { ButtonDiv, MainButtonStyle } from "../components/Liste/styles";
 
-export default function Home() {
+export default function Home({ listItems, setListItems }) {
   return (
     <main>
-      <Heading>🏄‍♂️🏄‍♀️🏄 Ruben´s geniale App 🏄🏄‍♀️🏄‍♂️</Heading>
-      <ToDoList></ToDoList>
+      <Heading>🏄‍♂️🏄‍♀️🏄 Ruben´s App 🏄🏄‍♀️🏄‍♂️</Heading>
+      <Liste listItems={listItems} />
+      <ButtonDiv>
+        <MainButtonStyle>
+          <Link href="/list"> + </Link>
+        </MainButtonStyle>
+      </ButtonDiv>
     </main>
   );
 }

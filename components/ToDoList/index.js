@@ -1,20 +1,45 @@
-import { TodoItem, TodoList, Checkbox } from "./styles";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useRouter } from "next/router";
+import { uid } from "uid";
 
-export default function ToDoList() {
-  const todoListData = [
-    { id: 1, text: "Water the plants" },
-    { id: 2, text: "Clean the houses" },
-    { id: 3, text: "collect the eggs" },
-  ];
+const TodoItemContainer = styled.li`
+  margin: 5px;
+  display: flex;
+  align-items: center;
+`;
+
+const TodoText = styled.span`
+  flex: 1;
+`;
+
+const DeleteButton = styled.button`
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
+
+export default function TodoForm({ listItems, setListItems }) {
+  const router = useRouter();
+
+  function handleAdd(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    setListItems([...listItems, { id: uid(), ...data }]);
+    router.push("/");
+  }
 
   return (
-    <TodoList>
-      {todoListData.map((todo) => (
-        <TodoItem key={todo.id}>
-          <Checkbox />
-          {todo.text}
-        </TodoItem>
-      ))}
-    </TodoList>
+    <form onSubmit={handleAdd}>
+      <input type="text" name="text" id="text" />
+      <label htmlFor="text"></label>
+      <button type="submit">Save</button>
+    </form>
   );
 }
