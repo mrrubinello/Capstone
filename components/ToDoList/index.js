@@ -1,7 +1,38 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { uid } from "uid";
 
-export default function TodoList() {
+const TodoItemContainer = styled.li`
+  margin: 5px;
+  display: flex;
+  align-items: center;
+`;
+
+const TodoText = styled.span`
+  flex: 1;
+`;
+
+const DeleteButton = styled.button`
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
+
+function TodoItem({ todo, onDelete }) {
+  return (
+    <TodoItemContainer>
+      <TodoText>{todo}</TodoText>
+      <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+    </TodoItemContainer>
+  );
+}
+
+export default function TodoList({ listItems, setListItems }) {
+  const router = useRouter();
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
@@ -9,12 +40,17 @@ export default function TodoList() {
     setNewTodo(event.target.value);
   };
 
-  const handleAddTodo = () => {
-    if (newTodo.trim() !== "") {
-      setTodos([...todos, newTodo]);
-      setNewTodo("");
-    }
-  };
+  function handleAdd(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    console.log(data);
+    setListItems([...listItems, { id: uid(), ...data }]);
+    console.log("listItems:", listItems);
+    router.push("/");
+  }
 
   const handleDeleteTodo = (index) => {
     const newTodos = todos.filter((_, i) => i !== index);
@@ -24,16 +60,18 @@ export default function TodoList() {
   return (
     <div>
       <h1>Todo List</h1>
-      <div>
-        <input type="text" value={newTodo} onChange={handleInputChange} />
-        <button onClick={handleAddTodo}>Add</button>
-      </div>
+      <form onSubmit={handleAdd}>
+        <input type="text" name="text" id="text" />
+        <label htmlFor="text"></label>
+        <button type="submit">Add</button>
+      </form>
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={() => handleDeleteTodo(index)}>Delete</button>
-          </li>
+          <TodoItem
+            key={index}
+            todo={todo}
+            onDelete={() => handleDeleteTodo(index)}
+          />
         ))}
       </ul>
     </div>

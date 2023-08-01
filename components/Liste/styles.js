@@ -12,6 +12,19 @@ const Checkbox = styled(BiCheckbox)`
   color: pink;
 `;
 
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const MainButtonStyle = styled.button`
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  button-style: none;
+`;
+
 const TodoItem = styled.li`
   display: flex;
   justify-content: space-between;
@@ -19,4 +32,4 @@ const TodoItem = styled.li`
   padding: 8px;
   border-bottom: 1px solid #ddd;
 `;
-export { TodoItem, TodoList, Checkbox };
+export { TodoItem, TodoList, Checkbox, MainButtonStyle, ButtonDiv };

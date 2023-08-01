@@ -1,15 +1,9 @@
 import { TodoItem, TodoList, Checkbox, Liste } from "./styles";
 
-export default function Listpage() {
-  const todoListData = [
-    { id: 1, text: "Water the plants" },
-    { id: 2, text: "Clean the houses" },
-    { id: 3, text: "collect the eggs" },
-  ];
-
+export default function Listpage({ listItems }) {
   return (
     <ul>
-      {todoListData.map((todo) => (
+      {listItems.map((todo) => (
         <TodoItem key={todo.id}>
           <Checkbox />
           {todo.text}
