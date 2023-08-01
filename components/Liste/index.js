@@ -1,4 +1,4 @@
-import { TodoItem, TodoList, Checkbox, Liste } from "./styles";
+import { TodoItem, TodoList, Checkbox } from "./styles";
 
 export default function Listpage({ listItems }) {
   return (
