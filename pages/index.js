@@ -6,7 +6,7 @@ import { ButtonDiv, MainButtonStyle } from "../components/Liste/styles";
 export default function Home({ listItems, setListItems }) {
   return (
     <main>
-      <Heading>🏄‍♂️🏄‍♀️🏄 Ruben´s App 🏄🏄‍♀️🏄‍♂️</Heading>
+      <Heading>🏄‍♂️🏄‍♀️🏄 Ruben´s To Do Liste 🏄🏄‍♀️🏄‍♂️</Heading>
       <Liste listItems={listItems} />
       <ButtonDiv>
         <MainButtonStyle>
