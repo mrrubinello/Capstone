@@ -3,9 +3,9 @@ import GlobalStyle from "../styles";
 import Head from "next/head";
 
 const dummyData = [
-  { id: 1, text: "Water the plants" },
-  { id: 2, text: "Clean the houses" },
-  { id: 3, text: "collect the eggs" },
+  { id: "1", text: "Water the plants" },
+  { id: "2", text: "Clean the houses" },
+  { id: "3", text: "collect the eggs" },
 ];
 
 export default function App({ Component, pageProps }) {
